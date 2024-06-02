@@ -15,7 +15,9 @@ export const createPhoto: RequestHandler = async function (req, res, next) {
 
     const [photo] = await db
       .insert(schema.photos)
-      .values({ originalName })
+      // This is for testing, needs to point to the correct key when the key changes after proccessing by the lambda "resized/${originalName}.webp ??"
+      // and the bucketName was missing
+      .values({ originalName, bucketName: process.env.PHOTOS_BUCKET, key: `uploads/${originalName}`})
       .returning()
 
     const command = new PutObjectCommand({
