@@ -4,3 +4,7 @@
 node_modules
 postgres-ca/
 *.ignore.*
+
+.terraform
+terraform/functions
+*.zip
